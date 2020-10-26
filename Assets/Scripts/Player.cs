@@ -16,6 +16,7 @@ public class Player : MonoBehaviour
 	private void Update()
 	{
 		Move();
+		FlipSprite();
 	}
 
 	private void Move()
@@ -25,5 +26,14 @@ public class Player : MonoBehaviour
 		rigidBody.velocity = playerVelocity;
 
 		animator.SetBool("isRunning", moveInputX != 0);
+	}
+
+	private void FlipSprite()
+	{
+		bool playerHasHorizontalSpeed = Mathf.Abs(rigidBody.velocity.x) > Mathf.Epsilon;
+		if (playerHasHorizontalSpeed) 
+		{
+			transform.localScale = new Vector2(Mathf.Sign(rigidBody.velocity.x), 1f);
+		}
 	}
 }
