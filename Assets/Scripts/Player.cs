@@ -25,7 +25,8 @@ public class Player : MonoBehaviour
 		Vector2 playerVelocity = new Vector2(moveInputX, rigidBody.velocity.y);
 		rigidBody.velocity = playerVelocity;
 
-		animator.SetBool("isRunning", moveInputX != 0);
+		bool isRunning = Mathf.Abs(rigidBody.velocity.x) > Mathf.Epsilon;
+		animator.SetBool("isRunning", isRunning);
 	}
 
 	private void FlipSprite()
