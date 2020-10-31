@@ -94,6 +94,7 @@ GameObject:
   - component: {fileID: 3785316905260795567}
   - component: {fileID: 919381261}
   - component: {fileID: 919381260}
+  - component: {fileID: 1069453612169464759}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -154,7 +155,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!70 &919381260
 CapsuleCollider2D:
@@ -172,3 +173,17 @@ CapsuleCollider2D:
   m_Offset: {x: -0.061484218, y: -0.061484575}
   m_Size: {x: 0.6405355, y: 0.9472995}
   m_Direction: 0
+--- !u!114 &1069453612169464759
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3785316905260795562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47498f25ad90ea24582efd320f4587a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 5
+  jumpForce: 20

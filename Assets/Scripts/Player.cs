@@ -3,6 +3,7 @@
 public class Player : MonoBehaviour
 {
 	[SerializeField] float moveSpeed = 1f;
+	[SerializeField] float jumpForce = 5f;
 
 	private Rigidbody2D rigidBody;
 	private Animator animator;
@@ -17,6 +18,7 @@ public class Player : MonoBehaviour
 	{
 		Move();
 		FlipSprite();
+		Jump();
 	}
 
 	private void Move()
@@ -27,6 +29,15 @@ public class Player : MonoBehaviour
 
 		bool isRunning = Mathf.Abs(rigidBody.velocity.x) > Mathf.Epsilon;
 		animator.SetBool("isRunning", isRunning);
+	}
+
+	private void Jump()
+	{
+		if (Input.GetButtonDown("Jump"))
+		{
+			Vector2 jumpVelocity = new Vector2(0f, jumpForce);
+			rigidBody.velocity += jumpVelocity;
+		}
 	}
 
 	private void FlipSprite()
