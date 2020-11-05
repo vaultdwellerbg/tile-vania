@@ -4,6 +4,7 @@ public class Player : MonoBehaviour
 {
 	[SerializeField] float moveSpeed = 1f;
 	[SerializeField] float jumpForce = 5f;
+	[SerializeField] float climbSpeed = 1f;
 
 	private Rigidbody2D rigidBody;
 	private Animator animator;
@@ -21,6 +22,7 @@ public class Player : MonoBehaviour
 		Move();
 		FlipSprite();
 		Jump();
+		ClimbLadder();
 	}
 
 	private void Move()
@@ -38,7 +40,7 @@ public class Player : MonoBehaviour
 		if (Input.GetButtonDown("Jump") && collider.IsTouchingLayers(LayerMask.GetMask("Ground")))
 		{
 			Vector2 jumpVelocity = new Vector2(0f, jumpForce);
-			rigidBody.velocity += jumpVelocity;
+			rigidBody.velocity = jumpVelocity;
 		}
 	}
 
@@ -48,6 +50,19 @@ public class Player : MonoBehaviour
 		if (playerHasHorizontalSpeed) 
 		{
 			transform.localScale = new Vector2(Mathf.Sign(rigidBody.velocity.x), 1f);
+		}
+	}
+
+	private void ClimbLadder()
+	{
+		if (collider.IsTouchingLayers(LayerMask.GetMask("Ladder"))) 
+		{
+			float moveInputY = Input.GetAxis("Vertical") * climbSpeed;
+			Vector2 climbeVelocity = new Vector2(rigidBody.velocity.x, moveInputY);
+			rigidBody.velocity = climbeVelocity;
+
+			bool isClimbing = Mathf.Abs(rigidBody.velocity.y) > Mathf.Epsilon;
+			animator.SetBool("isClimbing", isClimbing);
 		}
 	}
 }
