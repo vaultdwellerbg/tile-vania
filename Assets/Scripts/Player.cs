@@ -55,7 +55,7 @@ public class Player : MonoBehaviour
 
 	private void ClimbLadder()
 	{
-		if (collider.IsTouchingLayers(LayerMask.GetMask("Ladder"))) 
+		if (collider.IsTouchingLayers(LayerMask.GetMask("Ladder")))
 		{
 			float moveInputY = Input.GetAxis("Vertical") * climbSpeed;
 			Vector2 climbeVelocity = new Vector2(rigidBody.velocity.x, moveInputY);
@@ -63,6 +63,10 @@ public class Player : MonoBehaviour
 
 			bool isClimbing = Mathf.Abs(rigidBody.velocity.y) > Mathf.Epsilon;
 			animator.SetBool("isClimbing", isClimbing);
+		}
+		else 
+		{
+			animator.SetBool("isClimbing", false);
 		}
 	}
 }
