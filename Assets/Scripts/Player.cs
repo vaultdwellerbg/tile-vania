@@ -34,9 +34,9 @@ public class Player : MonoBehaviour
 		}
 	}
 
-	private void OnCollisionEnter2D(Collision2D collision)
+	private void OnTriggerEnter2D(Collider2D collision)
 	{
-		if (feetCollider.IsTouchingLayers(LayerMask.GetMask("Enemy")))
+		if (bodyCollider.IsTouchingLayers(LayerMask.GetMask("Enemy", "Hazards")) && isAlive)
 		{
 			HandleDeath();
 		}
