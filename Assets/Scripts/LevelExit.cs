@@ -1,10 +1,16 @@
 ﻿using System.Collections;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class LevelExit : MonoBehaviour
 {
 	[SerializeField] float levelLoadDelay = 2f;
+
+	private LevelLoader levelLoader;
+
+	private void Start()
+	{
+		levelLoader = FindObjectOfType<LevelLoader>();
+	}
 
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
@@ -19,7 +25,13 @@ public class LevelExit : MonoBehaviour
 	{
 		yield return new WaitForSecondsRealtime(levelLoadDelay);
 
-		var currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-		SceneManager.LoadScene(currentSceneIndex + 1);
+		if (levelLoader)
+		{
+			levelLoader.LoadNextScene();
+		}
+		else
+		{
+			Debug.LogError("You need to add LevelLoader in the scene!");
+		}
 	}
 }
