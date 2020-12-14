@@ -5,13 +5,6 @@ public class LevelExit : MonoBehaviour
 {
 	[SerializeField] float levelLoadDelay = 2f;
 
-	private LevelLoader levelLoader;
-
-	private void Start()
-	{
-		levelLoader = FindObjectOfType<LevelLoader>();
-	}
-
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
 		Player player = collision.gameObject.GetComponent<Player>();
@@ -25,13 +18,6 @@ public class LevelExit : MonoBehaviour
 	{
 		yield return new WaitForSecondsRealtime(levelLoadDelay);
 
-		if (levelLoader)
-		{
-			levelLoader.LoadNextScene();
-		}
-		else
-		{
-			Debug.LogError("You need to add LevelLoader in the scene!");
-		}
+		LevelLoader.LoadNextScene();
 	}
 }
