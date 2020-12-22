@@ -2,6 +2,8 @@
 
 public class CoinPickup : MonoBehaviour
 {
+	[SerializeField] AudioClip soundClip;
+
 	private BoxCollider2D boxCollider;
 
 	private void Start()
@@ -13,6 +15,7 @@ public class CoinPickup : MonoBehaviour
 	{
 		if (boxCollider.IsTouchingLayers(LayerMask.GetMask("Player")))
 		{
+			AudioSource.PlayClipAtPoint(soundClip, Camera.main.transform.position);
 			Destroy(gameObject);
 		}
 	}
