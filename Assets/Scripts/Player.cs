@@ -72,7 +72,6 @@ public class Player : MonoBehaviour
 		if (playerHasHorizontalSpeed) 
 		{
 			transform.localScale = new Vector2(Mathf.Sign(rigidBody.velocity.x), 1f);
-			Debug.Log(transform.localScale);
 		}
 	}
 
